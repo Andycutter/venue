@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_14_084600) do
+ActiveRecord::Schema.define(version: 2018_09_15_072155) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 2018_09_14_084600) do
     t.bigint "user_id"
     t.bigint "tickets_id"
     t.string "state"
+    t.date "event_date"
     t.index ["tickets_id"], name: "index_campaigns_on_tickets_id"
     t.index ["user_id"], name: "index_campaigns_on_user_id"
   end
@@ -125,7 +126,6 @@ ActiveRecord::Schema.define(version: 2018_09_14_084600) do
     t.datetime "updated_at", null: false
     t.integer "price"
     t.bigint "campaign_id"
-    t.string "name"
     t.integer "count", default: 200
     t.integer "sold_count", default: 0
     t.index ["campaign_id"], name: "index_tickets_on_campaign_id"

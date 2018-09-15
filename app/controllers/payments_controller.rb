@@ -36,7 +36,7 @@ class PaymentsController < ApplicationController
       end
       order.state = :paid
       session.delete(:order_id)
-      @message = 'You rock!'
+      @message = 'You have successfully completed your payment!'
     else
       @message = 'We could not process your payment!'
     end

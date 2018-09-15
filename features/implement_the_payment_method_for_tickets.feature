@@ -38,7 +38,7 @@ Feature: Implement the payment method for tickets
         Then I wait 2 seconds
         And I click on 'Submit Payment'
         And I wait 5 seconds
-        Then I should see "You rock!"
+        Then I should see "You have successfully completed your payment!"
 
 
     Scenario: Not signed up user buys a ticket
@@ -60,4 +60,4 @@ Feature: Implement the payment method for tickets
         Then I wait 2 seconds
         And I click on 'Submit Payment'
         And I wait 5 seconds
-        Then I should see "You rock!"
+        Then I should see "You have successfully completed your payment!"

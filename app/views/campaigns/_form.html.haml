@@ -16,6 +16,9 @@
         .mui-textfield.mui-textfield--float-label
           = form.text_field :location
           = form.label :location     
+        .mui-textfield.mui-textfield--float-label
+          = form.date_field :event_date
+          = form.label :event_date, 'Proposed date for Event'
         .mui-textfield#genre
           = form.label :genre 
         = form.select(:genre_ids, options_for_select(select_genre_options), {}, {multiple: true})

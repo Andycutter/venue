@@ -46,29 +46,32 @@ campaigns = Campaign.create([
         description: 'This is a very long description designed to exceed 100 character, so that the truncation sets in and limits the description of the event on the front page. The guest needs to click the title of the campaign to see the full description of the campaign',
         location: 'Luleå',
         state: 'pending',
-        user: artist
-
+        user: artist,
+        event_date: '2019-05-05'
     },
     {
         title: 'Fusce sodales',
         description: 'This is a very long description designed to exceed 100 character, so that the truncation sets in and limits the description of the event on the front page. The guest needs to click the title of the campaign to see the full description of the campaign',
         location: 'Karlstad',
         state: 'accepted',
-        user: artist
+        user: artist,
+        event_date: '2019-05-05'
     },
     {
         title: 'Someone else',
         description: 'This is a very long description designed to exceed 100 character, so that the truncation sets in and limits the description of the event on the front page. The guest needs to click the title of the campaign to see the full description of the campaign',
         location: 'Stockholm',
         state: 'accepted',
-        user: artist
+        user: artist,
+        event_date: '2019-05-05'
     },
     {
         title: 'Someone different',
         description: 'This is a very long description designed to exceed 100 character, so that the truncation sets in and limits the description of the event on the front page. The guest needs to click the title of the campaign to see the full description of the campaign',
         location: 'Stockholm',
         state: 'accepted',
-        user: artist
+        user: artist,
+        event_date: '2019-05-05'
     }
 ])
 

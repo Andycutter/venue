@@ -1,5 +1,5 @@
 class Campaign < ApplicationRecord
-  validates_presence_of :title, :description, :location, :state
+  validates_presence_of :title, :description, :location, :state, :event_date
 
   belongs_to :user
   has_and_belongs_to_many :genres

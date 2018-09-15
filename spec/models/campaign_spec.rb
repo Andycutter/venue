@@ -7,6 +7,7 @@ RSpec.describe Campaign, type: :model do
     it { is_expected.to have_db_column :description }
     it { is_expected.to have_db_column :location }
     it { is_expected.to have_db_column :state }
+    it { is_expected.to have_db_column :event_date }
   end
 
   describe 'Validates' do
@@ -14,6 +15,7 @@ RSpec.describe Campaign, type: :model do
     it { is_expected.to validate_presence_of :description }
     it { is_expected.to validate_presence_of :location }
     it { is_expected.to validate_presence_of :state }
+    it { is_expected.to validate_presence_of :event_date }
   end
 
   describe 'Factory' do

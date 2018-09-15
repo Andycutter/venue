@@ -33,8 +33,8 @@ Feature: Add sold ticket counter to Campaign page
         Then I fill in the stripe form
         And I wait 2 seconds
         And I click on 'Submit Payment'
-        And I wait 3 seconds
-        Then I should see "You rock!"
+        And I wait 5 seconds
+        Then I should see "You have successfully completed your payment!"
         And I should see '1/83'
 
     Scenario: Buy 3 tickets
@@ -47,5 +47,5 @@ Feature: Add sold ticket counter to Campaign page
         And I wait 2 seconds
         And I click on 'Submit Payment'
         And I wait 5 seconds
-        Then I should see "You rock!"
+        Then I should see "You have successfully completed your payment!"
         And I should see '3/83'

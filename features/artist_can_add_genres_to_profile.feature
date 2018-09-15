@@ -22,6 +22,7 @@ Feature: Artist has genres
         And I fill in 'Location' with 'Stockholm'
         And I select 'Pop' as genre
         And I select 'Rock' as genre
+        And I set the date to '2019-05-05'
         And I attach an image to the campaign
         And I click on 'Launch Campaign'
         When I wait 1 second

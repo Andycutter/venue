@@ -21,6 +21,7 @@ Feature: Admin can edit Campaigns
         And I fill in 'Title' with 'Veronica Maggio in Oslo'
         And I fill in 'Description' with 'I have moved to Oslo'
         And I fill in 'Location' with 'Oslo'
+        And I set the date to '2019-05-05'
         And I click 'Update Campaign'
         And I wait 1 second
         And I should see 'Campaign has been successfully updated'
