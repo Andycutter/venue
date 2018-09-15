@@ -14,7 +14,7 @@
       - @performers.each do |performer|
         .mui-col-md-3.has-artists-items
           %a.artist-item{href: performer_path(performer)}
-            %span.thumb{style: "background-image: url(#{image_path('feat-card-3.jpg')})"}
-            = link_to performer.name, performer_path(performer), class: 'title'
+            %span.thumb{style: "background-image: url(#{performer.profile_image.attached? ? image_path(rails_blob_path performer.profile_image) : image_path('feat-card-3.jpg')})"}
+          = link_to performer.name, performer_path(performer), class: 'title'
 
 
