@@ -1,0 +1,11 @@
+sliderIndexHtml = ("<%= escape_javascript(render partial: 'index') %>");
+var showElement = document.getElementById("show");
+showElement.innerHTML = sliderIndexHtml;
+
+iziToast.success({
+    title: "Notice:",
+    message: `<%= flash.notice %>`,
+    position: 'bottomLeft',
+    theme: 'dark',
+    backgroundColor: '#293239'
+});

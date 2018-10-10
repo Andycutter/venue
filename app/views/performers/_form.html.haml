@@ -16,7 +16,7 @@
               = form.text_field :city 
               = form.label :city 
         .mui-textfield.mui-textfield--float-label
-          = form.text_area :description 
+          = form.text_area :description, rows: 10
           = form.label :description, 'Artist Description' 
         .mui-textfield#genre
           = form.label :genre 
@@ -39,7 +39,7 @@
           .mui-col-md-6
             .mui-textfield.mui-textfield--float-label
               = form.text_field :youtube 
-              = form.label :youtube 
+              = form.label :youtube, "Youtube - enter video-ID"
         .mui-row  
           .mui-col-md-6
             .mui-textfield.mui-textfield--float-label
@@ -47,8 +47,8 @@
               = form.label :website 
           .mui-col-md-6
             .mui-textfield.mui-textfield--float-label   
-              = form.text_field :spotify 
-              = form.label :spotify 
+              = form.text_field :spotify
+              = form.label :spotify, 'Spotify URI'
         .mui-row
           .mui-col-lg-6
             .form-group

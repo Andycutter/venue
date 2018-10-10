@@ -1,0 +1,6 @@
+
+sliderModalHtml = "<%= escape_javascript(render partial: 'form', locals: {action: 'Create'})%>"
+sliderModalOptions = {width: '80%', height: '1000px', backgroundColor: '#000000'}
+showPartialAsModal(sliderModalHtml, sliderModalOptions);
+customUpload('slider_image', 'image-uploader', 100);
+sliderForm = document.querySelector('.mui-form')

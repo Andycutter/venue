@@ -1,0 +1,16 @@
+.mui--text-dark-secondary.mui--text-display1
+    = "Sliders (#{@sliders.count})"
+    = link_to 'Back', admin_root_path, class: 'mui-btn mui-btn--primary mui-btn--flat'
+
+%div
+    = link_to 'New Slider', new_admin_slider_path, remote: true, class: 'mui-btn mui-btn--primary mui-btn--flat'
+%table.mui-table.mui-table--bordered#campaign-list
+    %thead
+        %tr
+            %th Slider
+            %th Content
+            %th State
+            %th Actions
+    %tbody
+        - @sliders.each do |slider|
+            = render partial: 'slider_table_row', locals: {slider: slider}

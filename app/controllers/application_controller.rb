@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
   end
 
   def get_slider_content
-    @entries = ['This Band That We Love', 'Another Band', 'Amy Lee', 'Some Other']
+    @slides = Slider.visible
   end
 
   def configure_permitted_parameters

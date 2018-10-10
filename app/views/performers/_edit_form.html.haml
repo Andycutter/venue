@@ -18,7 +18,7 @@
               = form.text_field :city 
               = form.label :city 
         .mui-textfield.mui-textfield--float-label
-          = form.text_area :description 
+          = form.text_area :description, rows: 10
           = form.label :description, 'Artist Description'  
         .mui-row  
           .mui-col-md-6
@@ -37,7 +37,7 @@
           .mui-col-md-6
             .mui-textfield.mui-textfield--float-label
               = form.text_field :youtube 
-              = form.label :youtube 
+              = form.label :youtube, "Youtube - enter video-ID"
         .mui-row  
           .mui-col-md-6
             .mui-textfield.mui-textfield--float-label
@@ -46,7 +46,7 @@
           .mui-col-md-6
             .mui-textfield.mui-textfield--float-label   
               = form.text_field :spotify 
-              = form.label :spotify 
+              = form.label :spotify, 'Spotify URI'
         .form-group
           = form.submit 'Update Profile', class: 'form-submit'
           = button_tag 'Cancel', class: 'form-submit', onclick: 'cancelModal(event);' 

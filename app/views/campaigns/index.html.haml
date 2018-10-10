@@ -1,4 +1,4 @@
-= render partial: 'tiled_campaigns', locals: {campaigns: @campaigns}
+= render partial: 'tiled_campaigns', locals: {campaigns: @featured_campaigns} if @featured_campaigns&.any?
 .mui-container-fluid#home-events
     - @campaigns.each_slice(2) do |section|
         .mui-row

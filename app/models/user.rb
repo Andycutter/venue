@@ -1,8 +1,10 @@
 class User < ApplicationRecord
   after_initialize :set_default_role, if: :new_record?
-
+  after_create :send_welcome_mail
+    
   has_many :campaigns
   has_many :orders
+  has_many :event_tickets
   has_and_belongs_to_many :performers
 
   devise :database_authenticatable, :registerable,
@@ -27,5 +29,9 @@ class User < ApplicationRecord
       user.email = auth.info.email
       user.password = Devise.friendly_token[0,20]
     end
+  end
+
+  def send_welcome_mail
+    UserMailer.send_welcome_mail(self).deliver
   end
 end

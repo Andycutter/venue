@@ -1,0 +1,12 @@
+#show {
+    color: $mui-primary-color;;
+    a {
+        color: $mui-primary-color;
+    }
+}
+
+
+.mui-btn.mui-btn--flat:hover, .mui-btn.mui-btn--flat:focus, .mui-btn.mui-btn--flat:active {
+    color: rgba(0, 0, 0, 0.87);
+    background-color: lightgrey;
+}

@@ -1,0 +1,11 @@
+.grid
+.mui-container
+    %h4= "Tickets bought by: #{current_user.email}"
+    #similar-artists.mui-row.artists-list
+        .mui-col-lg-12
+            %h3.artist-heading Your tickets
+        - current_user.event_tickets.each do |event_ticket| 
+            .mui-col-md-3.mui-col-sm-6.has-artists-items        
+                %a.artist-item{href: campaign_path(event_ticket.campaign)}
+                    %span.thumb{style: "background-image: url(#{event_ticket.campaign.image.attached? ? image_path(rails_blob_path event_ticket.campaign.image) : image_path('feat-card-3.jpg')})"}
+                    %span.title= event_ticket.campaign.title

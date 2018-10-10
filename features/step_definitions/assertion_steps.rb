@@ -8,7 +8,7 @@ Then('I should see the {string} form') do |content|
   expect(page).to have_content content
 end
 
-Then('I should NOT see {string}') do |content|
+Then('I should NOT/not see {string}') do |content|
   expect(page).not_to have_content content
 end
 
@@ -23,7 +23,7 @@ Then('there should be a Artists Profile titled {string} in the Database') do |ex
 end
 
 Then('I should be redirected to the {string} page') do |page_name|
-  expect(current_path).to eq page_path(page_name)
+  expect(current_path).to eq page_path_helper(page_name)
 end
 
 Then('I should be redirected to the Campaign page for {string}') do |campaign_title|
@@ -31,7 +31,7 @@ Then('I should be redirected to the Campaign page for {string}') do |campaign_ti
   expect(current_path).to eq campaign_path(campaign)
 end
 
-Then('I should be redirected to the Artist page for {string}') do |performer_title|
+Then('I should be redirected to the Artist/performer page for {string}') do |performer_title|
   performer = Performer.find_by(name: performer_title)
   expect(current_path).to eq performer_path(performer)
 end
@@ -127,4 +127,50 @@ end
 Then('I should see a profile image') do
   image_string = find('div[class="artist-picture"]').native.css_value('background-image')
   expect(image_string).to include 'rails/active_storage/blobs'
+end
+
+Then('a ticket to {string} should be created for {string}') do |campaign_title, user_email|
+  user = @user || User.find_by_email(user_email)
+  campaign = Campaign.find_by_title campaign_title
+  actual_ticket_campaign_ids = user.event_tickets.map { |ticket| ticket.campaign.id }
+  expect(actual_ticket_campaign_ids).to include campaign.id
+end
+
+Then('I should see a embed Youtube-player') do
+  expect(page).to have_css('.youtube-container')
+end
+
+Then('the (pdf/ticket) should contain {string}') do |content|
+  file = open(ActiveStorage::Blob.service.send(:path_for, @user.event_tickets.last.pdf.key))
+  pdf = PDF::Inspector::Text.analyze_file(file)
+  expect(pdf.strings).to include content
+end
+
+Then('I should see a embed Spotify-player') do
+  expect(page).to have_css('.spotify-container')
+end
+
+Then('I should see a {string} button for the {string} campaign') do |element_text, campaign_title|
+  campaign = Campaign.find_by_title(campaign_title)
+  within("#campaign_#{campaign.id}") do
+    expect(find_all('a').detect { |e| e.native.text == element_text.upcase }).to be_truthy
+  end
+end
+
+Then('I should not see the {string} section') do |section_identifier|
+  expect(page).not_to have_css section_identifier
+end
+
+Then('I should see the {string} section') do |section_identifier|
+  expect(page).to have_css section_identifier
+end
+
+Then('there should be a Slider titled {string} in the Database') do |expected_title|
+  sleep 2
+  @slider = Slider.find_by(title: expected_title)
+  expect(@slider).not_to eq nil
+end
+
+Then('the sliders {string} should be {string}') do |attribute, expected_value|
+  expect(@slider.send(attribute.downcase.to_sym)).to eq expected_value
 end

@@ -10,7 +10,7 @@ These instructions will get your copy of the project running on your local machi
 
 ### Preequisites
 In order to get the platform running you need the following:
-* Rails versoin 5.2.0
+* Rails version 5.2.0
 * Ruby version 2.4.1
 * Bundler
 

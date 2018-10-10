@@ -1,0 +1,25 @@
+mui.overlay('off');
+var sliderIndexHtml = ("<%= escape_javascript(render partial: 'index') %>");
+var showElement = document.getElementById("show");
+showElement.innerHTML = sliderIndexHtml;
+
+<% if @slider.errors.any? %>
+    <% @slider.errors.full_messages.each do |error|%>
+        iziToast.warning({
+            title: "Error!",
+            message: `<%= error %>`,
+            position: 'bottomLeft',
+            theme: 'dark',
+            backgroundColor: '#293239'
+        });
+    <% end %>
+    
+<% else %>
+    iziToast.success({
+        title: "Thank you!",
+        message: `<%= flash.notice %>`,
+        position: 'bottomLeft',
+        theme: 'dark',
+        backgroundColor: '#293239'
+    });
+<% end %>

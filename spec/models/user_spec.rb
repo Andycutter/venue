@@ -18,6 +18,7 @@ RSpec.describe User, type: :model do
     it { is_expected.to have_many :campaigns }
     it { is_expected.to have_many :orders }
     it { is_expected.to have_and_belong_to_many :performers }
+    it { is_expected.to have_many :event_tickets }
   end
 
   describe 'User roles' do

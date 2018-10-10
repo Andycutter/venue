@@ -19,10 +19,15 @@ gem 'omniauth-google-oauth2', '~> 0.5.3'
 gem 'mui-sass', '~> 0.9.35'
 gem 'font-awesome-sass', '~> 5.0', '>= 5.0.13'
 gem 'state_machines-activerecord'
-gem 'social-share-button'
 gem 'stripe-rails'
 gem 'acts_as_shopping_cart', '~> 0.4.1'
 gem 'aws-sdk-s3', '~> 1.0.0.rc2'
+gem 'high_voltage', '~> 3.1'
+gem 'prawn-svg', '~> 0.28.0'  
+gem 'prawn-rails'
+gem 'rqrcode'
+gem 'barby', require: true
+gem 'sendgrid-actionmailer', github: 'eddiezane/sendgrid-actionmailer'
 
 group :development, :test do
   gem 'chromedriver-helper'
@@ -37,7 +42,11 @@ group :development, :test do
   gem 'coveralls', require: false
   gem 'pundit-matchers', '~> 1.6.0'
   gem 'state_machines-rspec'
-  gem 'stripe-ruby-mock', '~> 2.5.4', :require => 'stripe_mock'
+  gem 'stripe-ruby-mock', '~> 2.5.4', require: 'stripe_mock'
+  gem 'uuidtools'
+  gem 'email_spec'
+  gem 'pdf-inspector', require: 'pdf/inspector'
+
 end
 
 group :development do

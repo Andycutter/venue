@@ -1,18 +1,18 @@
 #content
-  #artist-banner{style: "background: linear-gradient(rgba(255,255,255,0.1), rgba(62,70,76,0.5)), url(#{rails_blob_path(@performer.background_image) unless @performer.background_image.attachment.nil?}"}
+  #artist-banner{style: "background: linear-gradient(rgba(255,255,255,0.1), rgba(62,70,76,0.5)), url(#{rails_blob_path(@performer.background_image) unless @performer.background_image.attachment.nil?}) center no-repeat"}
     .mui-container
       .mui-row
         .mui-col-md-12
-          .artist-picture{style: "background-image: url(#{rails_blob_path(@performer.profile_image) unless @performer.profile_image.attachment.nil? }"}
+          .artist-picture{style: "background-image: url(#{rails_blob_path(@performer.profile_image) unless @performer.profile_image.attachment.nil? })"}
           %h1= @performer.name
-          .location Stockholm | Sweden
+          .location= @performer.city
           .genre
             - @performer.genres.map {|genre| genre.name}.each do |genre|
               %span= genre.humanize
-          .follow-request
-            %a{href: "#"}> + Follow
-              |
-            %a{href: "#"} + Request this artist
+          -# .follow-request
+          -#   %a{href: "#"}> + Follow
+          -#     |
+          -#   %a{href: "#"} + Request this artist
   #artist-details
     .mui-container
       .mui-row
@@ -35,100 +35,20 @@
           %p= @performer.description 
           %ul.artist-social-links
             %li
-              %a{href: "#"}
+              %a
                 = icon('fab', 'twitter')
-                = @performer.twitter
+                = link_to "Twitter", @performer.twitter 
             %li
-              %a{href: "#"}
+              %a
                 = icon('fab', 'facebook')
-                = @performer.facebook
+                = link_to "Facebook", @performer.facebook
             %li
-              %a{href: "#"}
+              %a
                 = icon('fab', 'instagram')
-                = @performer.instagram
+                = link_to "Instagram", @performer.instagram
           .youtube-container
-            %iframe{allow: "autoplay; encrypted-media", allowfullscreen: "", frameborder: "0", height: "315", src: "https://www.youtube.com/embed/-1uGdOHMXiI?rel=0&showinfo=0", width: "560"}
+            %iframe{allow: "autoplay; encrypted-media", allowfullscreen: "", frameborder: "0", height: "315", src: "https://www.youtube.com/embed/#{@performer.youtube}", width: "560"}
         .mui-col-md-12.mui-col-lg-4.spotify-container
-          %iframe{allow: "encrypted-media", allowtransparency: "true", frameborder: "0", height: "380", src: "https://open.spotify.com/embed/user/ozze/playlist/3dxUfHVBNwwyNbsaTMYmPb", width: "300"}
-  .mui-container.artist-campaigns-container
-    .mui-row
-      .mui-col-lg-12
-        %h2.standout-heading Campaigns
-      .mui-col-md-12.mui-col-lg-7
-        .tiled-campaigns-wrap.featured
-          .tiled-campaigns
-            .col.col-1
-              %a.card{href: "#", style: "background-image: url(#{image_path('feat-card-1.jpg')}"}
-                %span.funded
-                  %strong> 100%
-                  Funded
-                %span.details
-                  %span.stats
-                    %span.stat
-                      %strong 120
-                      Tickets sold
-                    %span.stat
-                      %strong 120
-                      SEK
-                    %span.stat
-                      %strong 30
-                      Days left
-                  %span.reserve
-                    Reserve Spot
-                    %svg{style: "enable-background:new 0 0 24 24;", version: "1.1", viewbox: "0 0 24 24", x: "0px", "xml:space" => "preserve", xmlns: "http://www.w3.org/2000/svg", "xmlns:xlink" => "http://www.w3.org/1999/xlink", y: "0px"}
-                      %polygon{fill: "rgb(240,215,93)", points: "24,12 13.5,1.5 11.1,3.8 17.9,10.6 0,10.6 0,13.9 17.4,13.9 11.1,20.2 13.5,22.5 21.7,14.3 21.7,14.3"}
-                %span.date-venue
-                  %span.date 2018-09-01
-                  %span.venue Venue City
-                %span.caption Quisque dui
-      .mui-col-md-12.mui-col-lg-5
-        .tiled-campaigns-wrap
-          .tiled-campaigns
-            .col.col-2
-              %a.card{href: "#", style: "background-image: url(#{image_path('feat-card-2.jpg')}"}
-                %span.funded
-                  %strong> 100%
-                  Funded
-                %span.details
-                  %span.stats
-                    %span.stat
-                      %strong 120
-                      Tickets sold
-                    %span.stat
-                      %strong 120
-                      SEK
-                    %span.stat
-                      %strong 30
-                      Days left
-                  %span.reserve
-                    Reserve Spot
-                    %svg{style: "enable-background:new 0 0 24 24;", version: "1.1", viewbox: "0 0 24 24", x: "0px", "xml:space" => "preserve", xmlns: "http://www.w3.org/2000/svg", "xmlns:xlink" => "http://www.w3.org/1999/xlink", y: "0px"}
-                      %polygon{fill: "rgb(240,215,93)", points: "24,12 13.5,1.5 11.1,3.8 17.9,10.6 0,10.6 0,13.9 17.4,13.9 11.1,20.2 13.5,22.5 21.7,14.3 21.7,14.3"}
-                %span.date-venue
-                  %span.date 2018-09-01
-                  %span.venue Venue City
-                %span.caption Mauris ipsum
-              %a.card{href: "#", style: "background-image: url(#{image_path('feat-card-3.jpg')}"}
-                %span.funded
-                  %strong> 100%
-                  Funded
-                %span.details
-                  %span.stats
-                    %span.stat
-                      %strong 120
-                      Tickets sold
-                    %span.stat
-                      %strong 120
-                      SEK
-                    %span.stat
-                      %strong 30
-                      Days left
-                  %span.reserve
-                    Reserve Spot
-                    %svg{style: "enable-background:new 0 0 24 24;", version: "1.1", viewbox: "0 0 24 24", x: "0px", "xml:space" => "preserve", xmlns: "http://www.w3.org/2000/svg", "xmlns:xlink" => "http://www.w3.org/1999/xlink", y: "0px"}
-                      %polygon{fill: "rgb(240,215,93)", points: "24,12 13.5,1.5 11.1,3.8 17.9,10.6 0,10.6 0,13.9 17.4,13.9 11.1,20.2 13.5,22.5 21.7,14.3 21.7,14.3"}
-                %span.date-venue
-                  %span.date 2018-09-01
-                  %span.venue Venue City
-                %span.caption Fusce sodales
+          %iframe{allow: "encrypted-media", allowtransparency: "true", frameborder: "0", height: "380", src: "https://open.spotify.com/embed/artist/#{@performer.spotify}".split("spotify:artist:").join, width: "300"}
+  = render partial: 'performers_campaigns', locals: {campaigns: @performer.campaigns} if @performer.campaigns&.any?
   = render 'partials/similar_artists'

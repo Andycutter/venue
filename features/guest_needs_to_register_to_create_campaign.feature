@@ -20,6 +20,8 @@ Feature: Guests need to register to create campaigns
         Then I should see 'Welcome! You have signed up successfully.'
         And there should be a user in the database with the email 'mikael@venue.com'
         And the user 'mikael@venue.com' should be a 'fan'
+        And "mikael@venue.com" should receive an email
+
 
     Scenario: Guest can register as a Artist
         Given I am on the 'landing' page
@@ -35,6 +37,8 @@ Feature: Guests need to register to create campaigns
         Then I should see 'Welcome! You have signed up successfully.'
         And there should be a user in the database with the email 'thomas@venue.com'
         And the user 'thomas@venue.com' should be an 'artist'
+        And "thomas@venue.com" should receive an email
+
 
     Scenario: Guest start register process and then backs out
         Given I am on the 'landing' page

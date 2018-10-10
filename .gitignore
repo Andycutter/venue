@@ -31,3 +31,5 @@
 
 # Ignore VS Code files
 .vscode/
+
+*.pdf

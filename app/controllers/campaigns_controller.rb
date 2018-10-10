@@ -8,6 +8,7 @@ class CampaignsController < ApplicationController
     else
       @campaigns = Campaign.with_state(:accepted)
     end
+    @featured_campaigns = Campaign.featured
   end
 
   def new

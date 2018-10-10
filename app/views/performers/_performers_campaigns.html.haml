@@ -1,0 +1,6 @@
+.mui-container.artist-campaigns-container
+    .mui-row
+        .mui-col-lg-12
+            %h2.standout-heading Campaigns
+        = render partial: 'partials/tiled_campaigns_one', locals: {campaign: campaigns.first}
+        = render partial: 'partials/tiled_campaigns_two_and_three', locals: {campaigns: campaigns.offset(1).limit(2)}

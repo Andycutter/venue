@@ -1,11 +1,10 @@
 #content
     .carousel-wrapper
         .carousel
-            - @entries.each_with_index do |entry, index|
-                - image_name = "hero-carousel-#{index + 1}.jpg"
-                .carousel-item.slider{style: "background-image: url('#{image_path(image_name)}')"}
+            - @slides.each do |slide|
+                .carousel-item.slider{style: "background-image: url('#{rails_blob_url(slide.image)}')"}
                     .carousel-caption
-                        %h1= entry
+                        %h1= slide.content
         / Controls
         %a.carousel-control.prev
             %svg#Layer_1{style: "enable-background:new 0 0 24 42;", version: "1.1", viewbox: "0 0 24 42", x: "0px", "xml:space" => "preserve", xmlns: "http://www.w3.org/2000/svg", "xmlns:xlink" => "http://www.w3.org/1999/xlink", y: "0px"}

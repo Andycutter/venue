@@ -8,6 +8,7 @@ Feature: Admin can archove Artist-profile
         Given the following Performer exist
         | name       | state  |
         | Kanye West | active |
+        
         And the following user exist
         | email          | role  |
         | admin@venue.se | admin |

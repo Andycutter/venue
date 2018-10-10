@@ -1,5 +1,6 @@
-Rails.application.configure do
+# frozen_string_literal: true
 
+Rails.application.configure do
   config.cache_classes = false
   config.eager_load = false
 
@@ -32,9 +33,13 @@ Rails.application.configure do
 
   config.assets.debug = true
 
-  config.assets.quiet = true  
+  config.assets.quiet = true
 
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+  # Letter opener settings
+  config.action_mailer.delivery_method = :letter_opener
+  config.action_mailer.perform_deliveries = true
 end

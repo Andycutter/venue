@@ -15,11 +15,12 @@
     - flash.each do |key, value|
       :javascript
         showToast("#{key.humanize}", "#{value}", {});
-    - if current_page?(root_path)
+    - if current_page?(root_path) && @slides&.any?
       = render partial: 'partials/carousell'
       .container
         = yield
     - else 
       #content
         = yield
+    = render partial: 'partials/footer'
       

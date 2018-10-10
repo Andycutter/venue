@@ -1,10 +1,12 @@
 %h2 Review and pay 
 %p  
     You are about to order: 
+%ul{style: 'margin-bottom: 20px; list-style: none;'}
     - @order.items.each do | item |
-        %span= pluralize(item.quantity, 'ticket')
-        %span to
-        %span= item.item.ticket.campaign.title
+        %li
+            = pluralize(item.quantity, 'ticket')
+            %span to
+            %span= item.item.ticket.campaign.title
 
 
 = form_with url: payments_path, local: true, class: 'mui-form', id: 'payment-form' do |form|

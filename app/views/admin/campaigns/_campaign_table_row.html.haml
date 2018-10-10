@@ -1,0 +1,14 @@
+%tr{id: dom_id(campaign)}
+    %td
+        = campaign.title
+    %td
+        = campaign.state.humanize
+    %td
+        - if campaign.accepted?
+            - if campaign.featured?
+                = link_to 'Unfeature', admin_campaign_path(campaign, featured: false), method: :patch, remote: true, class: 'mui-btn mui-btn--primary mui-btn--flat feature-btn' 
+            - else
+                = link_to 'Feature', admin_campaign_path(campaign, featured: true), method: :patch, remote: true, class: 'mui-btn mui-btn--primary mui-btn--flat feature-btn' 
+
+
+

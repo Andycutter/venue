@@ -1,0 +1,11 @@
+#footer
+    .mui-container
+        .mui-row
+            .mui-col-md-7.mui-col-sm-7.mui-col-xs-7
+                %ul.top-nav
+                = link_to '', root_path, id: 'logo', class: 'logo-venue'
+                %ul.bottom-nav
+                    %li
+                        = link_to 'About Venue', page_path('about')
+                    %li
+                        = link_to 'Terms of use', page_path('terms_of_use')

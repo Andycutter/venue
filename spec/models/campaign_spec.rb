@@ -1,13 +1,15 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Campaign, type: :model do
-  
   describe 'DB table' do
     it { is_expected.to have_db_column :title }
     it { is_expected.to have_db_column :description }
     it { is_expected.to have_db_column :location }
     it { is_expected.to have_db_column :state }
     it { is_expected.to have_db_column :event_date }
+    it { is_expected.to have_db_column :featured }
   end
 
   describe 'Validates' do
@@ -20,7 +22,7 @@ RSpec.describe Campaign, type: :model do
 
   describe 'Factory' do
     it 'should have valid Factory' do
-      expect(create(:campaign)).to be_valid 
+      expect(create(:campaign)).to be_valid
     end
   end
 
@@ -28,7 +30,8 @@ RSpec.describe Campaign, type: :model do
     it { is_expected.to belong_to :user }
     it { is_expected.to have_many :tickets }
     it { is_expected.to have_and_belong_to_many :genres }
-
+    it { is_expected.to have_and_belong_to_many :performers }
+    it { is_expected.to have_many :event_tickets }
   end
 
   describe 'Attachment' do
@@ -61,5 +64,10 @@ RSpec.describe Campaign, type: :model do
       subject.archive
       expect(subject.archived?).to eq true
     end
+  end
+
+  describe 'Instance methods' do
+    it { is_expected.to respond_to :featured? }
+    it { is_expected.to respond_to :update_featured_status }
   end
 end

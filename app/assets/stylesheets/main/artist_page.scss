@@ -8,7 +8,7 @@
 
 #artist-banner {
   background: transparent none center center no-repeat;
-  background-size: cover;
+  background-size: cover !important;
   padding-top: 36%;
   z-index: 1;
   .mui-container {
@@ -43,7 +43,7 @@
     height: 250px;
     left: 0;
     position: absolute;
-    top: 50%;
+    top: 80%;
     width: 250px;
     -moz-transform: translateY(-50%);
     -webkit-transform: translateY(-50%);

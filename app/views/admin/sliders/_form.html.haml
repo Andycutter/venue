@@ -1,0 +1,35 @@
+.mui-container-fluid
+  .mui-row
+    .mui-col-md-4.mui-col-md-12.modal
+      %h2{style: 'margin-top: 10px'}
+        = action
+        Slider
+      #display_error_message
+      = form_with model: [:admin, @slider], class: 'mui-form' do |form|
+        .mui-textfield.mui-textfield--float-label
+          = form.text_field :title
+          = form.label :title
+        .mui-textfield.mui-textfield--float-label
+          = form.text_area :content, rows: 5
+          = form.label :content
+        .mui-row
+          .mui-col-md-3
+            .mui-select.mui-select--float-label
+              = form.select :state, Slider.states.map { |k,v| [k.humanize, k] }
+              = form.label :state
+        .mui-row
+          .mui-col-lg-6
+            .form-group
+              - if Rails.env.test?   
+                = form.label :image
+                = form.file_field :image 
+              - else
+                %input#image-uploader.form-submit{type: 'button', value: 'Upload image'}
+                = form.file_field :image, style: 'opacity: 0;'
+          .mui-col-lg-6
+            #image-uploader-upload-message
+            #image-uploader-preview
+        .form-group
+          = form.submit action == 'Create' ? 'Create Slider' : 'Update Slider', class: 'form-submit'
+          = button_tag 'Cancel', class: 'form-submit', onclick: 'cancelModal(event);' 
+          

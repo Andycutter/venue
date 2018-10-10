@@ -1,0 +1,10 @@
+%tr{id: dom_id(slider)}
+    %td
+        = slider.title
+    %td
+        = slider.content
+    %td
+        = slider.state.humanize
+    %td 
+        = link_to 'Delete', admin_slider_path(slider), method: :delete, remote: true, class: 'mui-btn mui-btn--small mui-btn--danger mui-btn--flat', data: {confirm: 'Are you sure?'}
+        = link_to 'Edit', edit_admin_slider_path(slider), remote: true, class: 'mui-btn mui-btn--small mui-btn--primary mui-btn--flat'
