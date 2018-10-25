@@ -1,21 +1,57 @@
-%h2 Review and pay 
-%p  
-    You are about to order: 
-%ul{style: 'margin-bottom: 20px; list-style: none;'}
-    - @order.items.each do | item |
-        %li
-            = pluralize(item.quantity, 'ticket')
-            %span to
-            %span= item.item.ticket.campaign.title
-
-
-= form_with url: payments_path, local: true, class: 'mui-form', id: 'payment-form' do |form|
-    .form-row
-        %label{for: "card-element"}
-        #card-element
-        / A Stripe Element will be inserted here.
-        / Used to display Element errors.
-        #card-errors{role: "alert"}
-    .form-group
-        %button{class: 'form-submit'} Submit Payment
-        = button_tag 'Cancel', class: 'form-submit', onclick: 'cancelModal(event);' 
+.mui-container-fluid{style: 'overflow:scroll;'}
+    .mui-row
+        .mui-col-md-8.mui-col-md-offset-2
+            #similar-artists.mui-row.artists-list
+                .mui-col-lg-12
+                    %h3.payment 
+                        You are about to order:
+                    %ul{style: 'decoration: none;'}
+                        - @order.items.each do | item |
+                            %li
+                                = pluralize(item.quantity, 'ticket')
+                                %span to
+                                %span= item.item.ticket.campaign.title
+            .mui-row
+                .mui-col-lg-12
+                    .cell.example.example2
+                        = form_with url: payments_path, local: true, id: 'payment-form' do |form|
+                            %div{"data-locale-reversible" => ""}
+                                .row
+                                    .field
+                                        %input#example2-name.input.empty{autocomplete: "address-name", "data-tid" => "elements_examples.form.name_placeholder", required: "", type: "text", autofocus: true}/
+                                        %label{"data-tid" => "elements_examples.form.name_label", for: "example2-name"} Name on card
+                                        .baseline
+                                .row
+                                    .field
+                                        %input#example2-address.input.empty{autocomplete: "address-line1", data: {tid: "elements_examples.form.address_placeholder"}, required: "", type: "text"}/
+                                        %label{"data-tid" => "elements_examples.form.address_label", for: "example2-address"} Address
+                                        .baseline
+                                .row{"data-locale-reversible" => ""}
+                                    .field.half-width
+                                        %input#example2-city.input.empty{autocomplete: "address-level2", "data-tid" => "elements_examples.form.city_placeholder", required: "", type: "text"}/
+                                        %label{"data-tid" => "elements_examples.form.city_label", for: "example2-city"} City
+                                        .baseline
+                                    .field.half-width
+                                        %input#example2-zip.input.empty{autocomplete: "postal-code", "data-tid" => "elements_examples.form.postal_code_placeholder", required: "", type: "text"}/
+                                        %label{"data-tid" => "elements_examples.form.postal_code_label", for: "example2-zip"} Postal code
+                                        .baseline
+                            .row
+                                .field
+                                    #example2-card-number.input.empty
+                                    %label{"data-tid" => "elements_examples.form.card_number_label", for: "example2-card-number"} Card number
+                                    .baseline
+                            .row
+                                .field.half-width
+                                    #example2-card-expiry.input.empty
+                                    %label{"data-tid" => "elements_examples.form.card_expiry_label", for: "example2-card-expiry"} Expiration
+                                    .baseline
+                                .field.half-width
+                                    #example2-card-cvc.input.empty
+                                    %label{"data-tid" => "elements_examples.form.card_cvc_label", for: "example2-card-cvc"} CVC
+                                    .baseline
+                            = form.submit 'Submit Payment', class: 'form-submit'
+                            -# %button{class: 'form-submit'} Submit Payment
+                            = button_tag 'Cancel', class: 'form-submit', onclick: 'cancelModal(event);' 
+                            .error{role: "alert"}
+                                %span.message
+            = link_to image_tag('powered_by_stripe.png', style: 'width: 100px; height: auto;'), 'https://stripe.com/se', target: '_blank'

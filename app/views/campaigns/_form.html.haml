@@ -1,4 +1,4 @@
-.mui-container-fluid
+.mui-container-fluid.modal-content
   .mui-row
     .mui-col-md-4.mui-col-md-12.modal
       %span.logo-venue
@@ -7,21 +7,30 @@
         Campaign
       #display_error_message
       = form_with model: @campaign, class: 'mui-form' do |form|
-        .mui-textfield.mui-textfield--float-label
-          = form.text_field :title
-          = form.label :title
+        .mui-row
+          .mui-col-lg-6
+            .mui-textfield.mui-textfield--float-label
+              = form.text_field :title
+              = form.label :title
+          .mui-col-lg-6
+            .mui-textfield#performer
+              = form.label :performer_ids, "Artist"
+            = form.select(:performer_ids, options_for_select(select_performers_options), {}, {multiple: true})
+        
         .mui-textfield.mui-textfield--float-label
           = form.text_area :description, rows: 7
           = form.label :description
         .mui-textfield.mui-textfield--float-label
           = form.text_field :location
-          = form.label :location     
-        .mui-textfield.mui-textfield--float-label
-          = form.date_field :event_date
-          = form.label :event_date, 'Proposed date for Event'
-        .mui-textfield#genre
-          = form.label :genre 
-        = form.select(:genre_ids, options_for_select(select_genre_options), {}, {multiple: true})
+          = form.label :location   
+        .mui-row
+          .mui-col-md-6
+            .mui-textfield.mui-textfield--float-label
+              = form.date_field :event_date
+          .mui-col-lg-6
+            .mui-textfield#genre
+              = form.label :genre 
+            = form.select(:genre_ids, options_for_select(select_genre_options), {}, {multiple: true})
 
         %div#ticket-info
           .mui-textfield.mui-textfield--float-label

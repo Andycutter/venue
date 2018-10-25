@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 class Campaign < ApplicationRecord
-  validates_presence_of :title, :description, :location, :state, :event_date
-
+  
   belongs_to :user
   has_and_belongs_to_many :genres
   has_one_attached :image
@@ -10,6 +9,10 @@ class Campaign < ApplicationRecord
   has_many :event_tickets
   has_and_belongs_to_many :performers
   accepts_nested_attributes_for :tickets
+
+  validates_presence_of :title, :description, :location, :state, :event_date
+  validates :performers, presence: true
+
 
   scope :featured, -> { where(featured: true) }
 

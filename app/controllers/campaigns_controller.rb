@@ -1,13 +1,15 @@
+# frozen_string_literal: true
+
 class CampaignsController < ApplicationController
   before_action :authenticate_user!, only: [:create]
-  before_action :get_campaign, only: [:show, :edit, :update]
+  before_action :get_campaign, only: %i[show edit update]
 
   def index
-    if user_signed_in? && current_user.admin?
-      @campaigns = Campaign.all
-    else
-      @campaigns = Campaign.with_state(:accepted)
-    end
+    @campaigns = if user_signed_in? && current_user.admin?
+                   Campaign.all
+                 else
+                   Campaign.with_state(:accepted)
+                 end
     @featured_campaigns = Campaign.featured
   end
 
@@ -19,18 +21,17 @@ class CampaignsController < ApplicationController
   def create
     @campaign = current_user.campaigns.create(campaign_params)
     if @campaign.persisted?
-      ticket = @campaign.tickets.create(ticket_params) 
-      ticket_variants.each {|values| TicketVariant.create(values.merge(ticket: ticket))}
+      ticket = @campaign.tickets.create(ticket_params)
+      ticket_variants.each { |values| TicketVariant.create(values.merge(ticket: ticket)) }
       flash[:notice] = 'Campaign successfully launched'
       redirect_to campaign_path(@campaign)
     else
-      render json: {message: 'Additional input required'}, status: 422
+      render json: { message: 'Additional input required' }, status: 422
       authorize @campaign
     end
   end
 
-  def show
-  end
+  def show; end
 
   def edit
     authorize @campaign
@@ -51,18 +52,18 @@ class CampaignsController < ApplicationController
     end
   end
 
-private
+  private
 
   def campaign_params
-    params.require(:campaign).permit(:title, :description, :location, :image, :state, :event_date, genre_ids: [])
+    params.require(:campaign).permit(:title, :description, :location, :image, :state, :event_date, genre_ids: [], performer_ids: [])
   end
 
-  def ticket_params 
+  def ticket_params
     params[:campaign][:ticket].permit(:price)
   end
 
   def ticket_variants
-    params[:campaign][:ticket_variants].permit!.to_h.symbolize_keys.values 
+    params[:campaign][:ticket_variants].permit!.to_h.symbolize_keys.values
   end
 
   def get_campaign

@@ -28,6 +28,9 @@
 
 /coverage
 
+# Ignore ngrok
+ngrok
+
 
 # Ignore VS Code files
 .vscode/

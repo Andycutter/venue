@@ -134,3 +134,111 @@ ul.artist-social-share {
   }
 }
 
+.avatar {
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  -o-object-fit: cover;
+  object-fit: fill;
+
+}
+
+.avatar-link {
+  top: 10px;
+  position: relative;
+}
+
+.artists-list .payment { 
+  border-bottom: 1px solid rgb(240,215,93); 
+  color: rgb(240,215,93); 
+  font-size: 32px; 
+  font-weight: 900; 
+  margin-bottom: 20px; 
+  padding-bottom: 15px }
+
+
+.venue-button {
+  background-color: transparent;
+  border: 1px solid rgb(240, 215, 93);
+  border-radius: 50px;
+  display: table;
+  font-size: 13px;
+  font-weight: bold;
+  margin: 30px auto 0;
+  padding: 5px 30px;
+}
+
+
+.mui-textfield {
+  display: block;
+  padding-top: $xFormLabelLineHeight;
+  margin-bottom: $mui-form-group-margin-bottom;
+  position: relative;
+
+  > label {
+    @include form-label();
+  }
+
+  > textarea {
+    padding-top: mui-rem(5px);
+  }
+
+  > input,
+  > textarea {
+    &:focus ~ label {
+      color: white;
+    }
+  }
+}
+
+.mui-textfield--float-label {
+  > label {
+    // Layout
+    position: absolute;
+    transform: translate(0px, $xFormLabelLineHeight);
+
+    // Typography
+    font-size: $mui-input-font-size;
+    line-height: $mui-input-height;
+    color: white;
+
+    // Overflow policy
+    text-overflow: clip;
+
+    // Cursor
+    cursor: text;  // for ie10
+    pointer-events: none;
+  }
+
+  > input,
+  > textarea {
+    // these css blocks are copied to deal with Firefox bug
+    &:-webkit-autofill ~ label {
+      transform: translate(0px, 0px);
+      font-size: $mui-label-font-size;
+      line-height: $xFormLabelLineHeight;
+      text-overflow: ellipsis;
+    }
+    
+    &:focus ~ label {
+      transform: translate(0px, 0px);
+      font-size: $mui-label-font-size;
+      line-height: $xFormLabelLineHeight;
+      text-overflow: ellipsis;
+    }
+
+    &:not(:focus) {
+      &.mui--is-not-empty,
+      &[value]:not([value=""]):not(.mui--is-empty):not(.mui--is-not-empty),
+      &:not(:empty):not(.mui--is-empty):not(.mui--is-not-empty) {
+        ~ label {
+          color: white;
+          font-size: $mui-label-font-size;
+          line-height: $xFormLabelLineHeight;
+          transform: translate(0px, 0px);
+          text-overflow: ellipsis;
+        }
+      }
+    }
+  }
+}

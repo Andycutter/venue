@@ -22,4 +22,8 @@ module ApplicationHelper
   def select_genre_options
     Genre.all.order("id ASC").collect { |g| [g.name.humanize, g.id] }
   end
+
+  def select_performers_options
+    Performer.all.order("id ASC").collect { |g| [g.name, g.id] }
+  end
 end

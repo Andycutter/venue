@@ -51,4 +51,3 @@
         .mui-col-md-12.mui-col-lg-4.spotify-container
           %iframe{allow: "encrypted-media", allowtransparency: "true", frameborder: "0", height: "380", src: "https://open.spotify.com/embed/artist/#{@performer.spotify}".split("spotify:artist:").join, width: "300"}
   = render partial: 'performers_campaigns', locals: {campaigns: @performer.campaigns} if @performer.campaigns&.any?
-  = render 'partials/similar_artists'

@@ -19,9 +19,12 @@
                     %li#order-info
                         = link_to "#{pluralize(active_order.total_unique_items, 'ticket') if active_order?}", new_payment_path, remote: true
                     %li
-                        - if user_signed_in?  
+                        - if user_signed_in? 
                             %li.buttoned
                                 = link_to 'Log out', destroy_user_session_path, method: :delete
+                            %li
+                                = link_to image_tag(current_user.avatar, class: 'avatar'), user_path(current_user), class: 'avatar-link' 
+
                         - else 
                             %li
                                 = link_to 'Log in', new_user_session_path, remote: true

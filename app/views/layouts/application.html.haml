@@ -2,12 +2,28 @@
 %html
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{content: "width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no", name: "viewport"}/    
+    %meta{content: "", name: "description"}/
+    %meta{content: "", name: "keywords"}/
+    %meta{content: "", name: "copyright"}/
+    %meta{content: "INDEX,FOLLOW", name: "robots"}/
+    %link{href: "", rel: "canonical"}/
     %title Venue
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+
+    = favicon_link_tag asset_path('venue_favicon.png'), rel: 'icon', type:  'image/png'
+
     %script{src: "https://js.stripe.com/v3/"}
+    - if Rails.env.production?
+      %script{async: '', src: "https://www.googletagmanager.com/gtag/js?id=UA-127569667-1"}
+      :javascript
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-127569667-1');
 
   %body
     = render partial: 'partials/header'

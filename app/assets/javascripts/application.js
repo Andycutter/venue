@@ -58,10 +58,20 @@ const showMultiSelect = (elementId, options) => {
     var element = document.getElementById(elementId)
     if (element) {
         var multiSelect = new Choices(element, mergedOptions);
+        return multiSelect;
     }
-
 }
 
+const setPresets = options => {
+    let presets = options.element.presetChoices.filter(obj => options.presets.includes(obj.label))
+    presets.forEach(obj => {
+        obj.selected = true;
+    })
+    options.element.setChoices(presets, 'value', 'label', false)
+}
+
+// Usage example: 
+// setPresets({element: performerChoices, presets: performers})
 
 
 document.addEventListener('turbolinks:load', () => {
@@ -69,5 +79,12 @@ document.addEventListener('turbolinks:load', () => {
     let slider = document.querySelector('.carousel');
     if (slider) {
         initiateSlider('.carousel')
+    }
+
+    // Send GA event using Turbolinks 
+    if (typeof gtag === 'function') {
+        gtag('config', 'UA-127569667-1', {
+            'page_location': event.data.url
+        });
     }
 })

@@ -1,5 +1,8 @@
 var html = "<%= escape_javascript(render 'payments/new')%>"
-showPartialAsModal(html, {width: '70vw', height: '80vh'});
+showPartialAsModal(html, {width: '70%', height: '85vh'});
 
-
-initiateStripe("<%= Rails.application.credentials.stripe[:publishable_key]%>");
+<% if Rails.env.production? %>
+    initiateStripe("<%= Rails.application.credentials.stripe_production[:publishable_key]%>");
+<% else%>
+    initiateStripe("<%= Rails.application.credentials.stripe_development[:publishable_key]%>");
+<% end%>

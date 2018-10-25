@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_08_094216) do
+ActiveRecord::Schema.define(version: 2018_10_10_211635) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,20 +74,6 @@ ActiveRecord::Schema.define(version: 2018_10_08_094216) do
     t.datetime "updated_at", null: false
     t.index ["campaign_id"], name: "index_event_tickets_on_campaign_id"
     t.index ["user_id"], name: "index_event_tickets_on_user_id"
-  end
-
-  create_table "follows", force: :cascade do |t|
-    t.string "followable_type", null: false
-    t.bigint "followable_id", null: false
-    t.string "follower_type", null: false
-    t.bigint "follower_id", null: false
-    t.boolean "blocked", default: false, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["followable_id", "followable_type"], name: "fk_followables"
-    t.index ["followable_type", "followable_id"], name: "index_follows_on_followable_type_and_followable_id"
-    t.index ["follower_id", "follower_type"], name: "fk_follows"
-    t.index ["follower_type", "follower_id"], name: "index_follows_on_follower_type_and_follower_id"
   end
 
   create_table "genres", force: :cascade do |t|
@@ -168,7 +154,6 @@ ActiveRecord::Schema.define(version: 2018_10_08_094216) do
     t.integer "price"
     t.bigint "campaign_id"
     t.integer "count", default: 200
-    t.integer "sold_count", default: 0
     t.index ["campaign_id"], name: "index_tickets_on_campaign_id"
   end
 

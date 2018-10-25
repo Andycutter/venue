@@ -1,18 +1,25 @@
 @javascript
-Feature: Attaching image to the campaign 
+Feature: Attaching image to the campaign
     As an Artist
     To further promote my Campaign
     I would like to be able to attach an image to my Campaign
 
     Background:
         Given the following user exist
-        | email          | role   | password   |
-        | user@artist.se | admin  | my-pasword |
+            | email          | role  | password   |
+            | user@artist.se | admin | my-pasword |
+
+        And the following Performer with name exist
+            | name             | user           |
+            | Veronica Maggio  | user@artist.se |
+            | Clare Cunningham | user@artist.se |
+            
         And I am logged in as 'user@artist.se'
 
     Scenario: Attaching image to the campaign
         And I am on the 'landing' page
         And I click on 'New Campaign'
+        And I select 'Clare Cunningham' as performer
         And I fill in 'Title' with 'Clare Cunningham'
         And I fill in 'Description' with 'Dubbed as having a vocal register similar to Adele'
         And I fill in 'Location' with 'Stockholm'
@@ -26,4 +33,4 @@ Feature: Attaching image to the campaign
         And I wait 1 second
         And I should see the 'dummy.jpg' image
 
-    
+

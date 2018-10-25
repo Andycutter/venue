@@ -1,5 +1,6 @@
 var html = "<%= escape_javascript(render partial: 'form', locals: { action: :update })%>"
-showPartialAsModal(html, {width: '70vw', height: '125vh'});
+var modal = showPartialAsModal(html, {width: '70vw', height: '125vh'});
+resizableModal(modal, 70);
 customUpload('performer_profile_image', 'profile-image-uploader', 100);
 customUpload('performer_background_image', 'backgrount-image-uploader', 100);
 var form = document.querySelector('.mui-form')

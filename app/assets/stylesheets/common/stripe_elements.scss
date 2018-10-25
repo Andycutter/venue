@@ -1,0 +1,160 @@
+.example.example2 {
+  background-color: transparent;
+  * {
+    font-size: 16px;
+    font-weight: 500;
+  }
+  .row {
+    display: -ms-flexbox;
+    display: flex;
+    margin: 0 5px 10px;
+  }
+  .field {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin: 0 10px;
+    &.half-width {
+      width: 50%;
+    }
+    &.quarter-width {
+      width: calc(25% - 10px);
+    }
+  }
+  .baseline {
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    left: 0;
+    bottom: 0;
+    background-color: #cfd7df;
+    transition: background-color 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+  label {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: 8px;
+    color: #cfd7df;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    transform-origin: 0 50%;
+    cursor: text;
+    transition-property: color, transform;
+    transition-duration: 0.3s;
+    transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+  .input {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    padding-bottom: 7px;
+    color: white;
+    background-color: transparent;
+    &::-webkit-input-placeholder, &::-moz-placeholder, &:-ms-input-placeholder {
+      color: transparent;
+      transition: color 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+    &.StripeElement {
+      opacity: 0;
+      transition: opacity 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+      will-change: opacity;
+    }
+    &.focused, &:not(.empty) {
+      opacity: 1;
+      background-color: rgb(39, 38, 38);
+    }
+    &.focused::-webkit-input-placeholder, &:not(.empty)::-webkit-input-placeholder, &.focused::-moz-placeholder, &:not(.empty)::-moz-placeholder, &.focused:-ms-input-placeholder, &:not(.empty):-ms-input-placeholder {
+      color: #cfd7df;
+    }
+    &.focused + label, &:not(.empty) + label {
+      color: #aab7c4;
+      transform: scale(0.85) translateY(-25px);
+      cursor: default;
+    }
+    &.focused + label {
+      color: white;
+    }
+    &.invalid + label {
+      color: #ffa27b;
+    }
+    &.focused {
+      + label + .baseline {
+        background-color: white;
+      }
+      &.invalid + label + .baseline {
+        background-color: #e25950;
+      }
+    }
+  }
+  input, button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: none;
+    border-style: none;
+  }
+  input:-webkit-autofill {
+    -webkit-text-fill-color: #e39f48;
+    transition: background-color 100000000s;
+    -webkit-animation: 1ms void-animation-out;
+  }
+  .StripeElement--webkit-autofill {
+    background: transparent !important;
+  }
+  input {
+    -webkit-animation: 1ms void-animation-out;
+  }
+  button {
+    color: white; 
+    background-color: transparent; 
+    border: 1px solid rgb(240,215,93); 
+    border-radius: 50px; 
+    display: table; 
+    font-size: 13px; 
+    font-weight: bold; 
+    margin: 30px auto 0; 
+    padding: 5px 30px;
+    cursor: pointer;
+  }
+  input:active {
+    background-color: white;
+  }
+  .error {
+    svg {
+      margin-top: 0 !important;
+      .base {
+        fill: #e25950;
+      }
+      .glyph {
+        fill: #fff;
+      }
+    }
+    .message {
+      color: #e25950;
+    }
+  }
+  .success {
+    .icon {
+      .border {
+        stroke: #abe9d2;
+      }
+      .checkmark {
+        stroke: #24b47e;
+      }
+    }
+    .title {
+      color: #32325d;
+      font-size: 16px !important;
+    }
+    .message {
+      color: #8898aa;
+      font-size: 13px !important;
+    }
+    .reset path {
+      fill: #24b47e;
+    }
+  }
+}

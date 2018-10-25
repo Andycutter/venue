@@ -1,14 +1,49 @@
 var html = "<%= escape_javascript(render partial: 'campaigns/form', locals: {action: 'Edit'})%>"
-showPartialAsModal(html, {width: '600px', height: '800px'});
-
+var modal = showPartialAsModal(html, {width: '80%', height: '800px'});
+resizableModal(modal, 70);
 var form = document.querySelector('.mui-form')
 customUpload('campaign_image', 'image-uploader', 100);
-options = {
+
+optionsGenre = {
     placeholder: true,
     maxItemCount: 5,
-    placeholderValue: 'Genre'
+    placeholderValue: 'Genres...',
+    maxItemText: (maxItemCount) => {
+      return `Only ${maxItemCount} genres can be added to a campaign.`;
+    }
 }
-showMultiSelect('campaign_genre_ids', options);
+
+optionsPerformer = {
+    placeholder: true,
+    maxItemCount: 1,
+    placeholderValue: 'Choose an artist...',
+    itemSelectText: 'Select this artist',
+    maxItemText: (maxItemCount) => {
+      return `Only ${maxItemCount} artist can be added to a campaign.`;
+    }
+}
+
+
+// Let's deal with choices_js
+var performerChoices = showMultiSelect('campaign_performer_ids', optionsPerformer);
+var genreChoices = showMultiSelect('campaign_genre_ids', optionsGenre);
+
+
+// Let's deal with setting the values on choices_js fields
+
+var performers = <%= raw @campaign.performers.map {|performer| performer.name}%>
+var genres = <%= raw @campaign.genres.map {|genre| genre.name.titleize}%>
+
+setPresets({element: performerChoices, presets: performers})
+setPresets({element: genreChoices, presets: genres})
+
+// Let's set the image preview
+
+var previewElement = document.getElementById('image-uploader-preview')
+previewElement.innerHTML = `<img style='width: auto; max-height: 100px;' src= '<%= rails_blob_path(@campaign.image)%>'/>`;
+
+
+// Let's deal with errors we get from the controller
 form.addEventListener('ajax:error', (event) => {
     showToast('Error', event.detail[0].message, {target: '#display_error_message'});
 })

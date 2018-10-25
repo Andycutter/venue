@@ -27,7 +27,7 @@ Feature: Admin can edit Artist-profiles
         And I click on 'Edit'
         And I fill in 'Artist name' with 'Jay-Z'
         And I fill in 'City' with 'New York City'
-        And I select 'Hip hop' as genre
+        And I select 'Hip hop' as performer genre
         And I fill in 'Artist Description' with 'Born in Atalanta, raised in Chicago'
         And I fill in 'Facebook' with 'https://www.facebook.com/Jay-Z/'
         And I fill in 'Instagram' with 'https://www.instagram.com/Jay-Z'

@@ -6,4 +6,4 @@
                 %p= ticket.name
                 %p= [(ticket.price.to_i / 100),  'kr'].join(' ')
                 %p= [ticket.sold_count, ticket.count].join('/')
-                = link_to "Buy your ticket", orders_path(ticket_id: ticket.id), method: :post, remote: true, class: 'mui-btn', id: 'purchase'
+                = link_to "Buy your ticket", orders_path(ticket_id: ticket.id), method: :post, remote: true, class: 'venue-button', id: 'purchase'

@@ -30,7 +30,6 @@ Feature: Add sold ticket counter to Campaign page
         And I should see "1 ticket" in header
         Then I click on '1 ticket' in header
         And I should see '1 ticket to Veronica Maggio in Stockholm'
-        # Then stop
         # Then I fill in the stripe form
         # And I wait 2 seconds
         # And I click on 'Submit Payment'

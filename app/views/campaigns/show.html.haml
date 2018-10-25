@@ -56,7 +56,9 @@
                     %g
                       %path{d: "M431.878,46.66c-7.367-8.229-20.012-8.929-28.241-1.562s-8.929,20.011-1.562,28.241\r\n\t\t\t\t\t\t\t\t\t\t\t\t\tC434.27,109.304,452,155.708,452,204.006c0,11.046,8.954,20,20,20c11.046,0,20-8.954,20-20\r\n\t\t\t\t\t\t\t\t\t\t\t\t\tC492,145.85,470.648,89.97,431.878,46.66z"}
                 .label Days to go
-              .date 30 Days left
+              .date 
+                = distance_of_time_in_words(Date.today, @campaign.event_date) 
+                %span left
         - unless @campaign.tickets.empty?
           .mui-row.tickets-by-price
             = render partial: 'tickets_section', locals: {tickets: @campaign.tickets}
@@ -66,8 +68,8 @@
               %label= "Share:"
               %ul.artist-social-share
                 %li
-                  %a{href: "https://twitter.com/intent/tweet?url=http://venue-show.herokuapp.com#{campaign_path}&text=#{@campaign.title}&via=venue_sthlm", target: "_blank ", title: "Share on Twitter"}= icon('fab', 'twitter')
-                  %a{href: "https://www.facebook.com/sharer/sharer.php?u=venue-show.herokuapp.com/#{campaign_path}", target: "_blank", title: "Share on Facebook", image: @campaign.image}= icon('fab', 'facebook')
+                  %a{href: "https://twitter.com/intent/tweet?url=http://www.venue.show#{campaign_path}&text=#{@campaign.title}&via=venue_sthlm", target: "_blank ", title: "Share on Twitter"}= icon('fab', 'twitter')
+                  %a{href: "https://www.facebook.com/sharer/sharer.php?u=http://www.venue.show#{campaign_path}", target: "_blank", title: "Share on Facebook", image: @campaign.image}= icon('fab', 'facebook')
       .form-group
         %ul.admin-links
           - if @campaign.pending? && current_user.admin?

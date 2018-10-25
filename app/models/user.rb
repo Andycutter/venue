@@ -1,11 +1,14 @@
 class User < ApplicationRecord
   after_initialize :set_default_role, if: :new_record?
   after_create :send_welcome_mail
+  after_create :add_basic_avatar
     
   has_many :campaigns
   has_many :orders
   has_many :event_tickets
   has_and_belongs_to_many :performers
+
+  has_one_attached :avatar
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
@@ -33,5 +36,9 @@ class User < ApplicationRecord
 
   def send_welcome_mail
     UserMailer.send_welcome_mail(self).deliver
+  end
+
+  def add_basic_avatar
+    self.avatar.attach(io: File.open(Rails.root.join('spec', 'fixtures', 'dummy_avatar.jpg')), filename: "avatar-#{self.email}.jpg", content_type: 'image/jpg')
   end
 end

@@ -4,8 +4,9 @@
 @import 'common/custom_app';
 @import 'main/artist_page';
 @import 'common/mui_extensions';
-@import 'izitoast/dist/css/iziToast.min.css';
+@import 'common/izi_toast';
 @import "font-awesome-sprockets";
 @import "font-awesome";
 @import "choices.js/assets/styles/scss/choices.scss";
 @import "main/choices_customization";
+@import "common/stripe_elements.scss";

@@ -1,4 +1,4 @@
-.mui-container-fluid
+.mui-container-fluid.modal-content
   .mui-row
     .mui-col-lg-10.mui-col-lg-offset-1.mui-col-md-12.modal
       %span.logo-venue
@@ -21,6 +21,6 @@
           = f.submit "Sign up for Venue", class: 'form-submit' 
         .social-login-buttons
           = link_to "Sign up with Facebook", user_facebook_omniauth_authorize_path(role: @role), class: 'facebook', onclick: "mui.overlay('on')"
-          = link_to "Sign up with Google", user_google_oauth2_omniauth_authorize_path(role: @role), class: 'google', onclick: "mui.overlay('on')"        
+          =# link_to "Sign up with Google", user_google_oauth2_omniauth_authorize_path(role: @role), class: 'google', onclick: "mui.overlay('on')"        
         .form-group
           = button_tag 'Cancel', class: 'form-submit', onclick: 'cancelModal(event);' 

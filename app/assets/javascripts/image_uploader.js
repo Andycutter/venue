@@ -1,23 +1,22 @@
 // General method to display an image preview on the form 
 const displayImagePreview = (event, uploadElement, dimension) => {
-    var files = event.target.files;
+    let files = event.target.files;
     document.getElementById(`${uploadElement}-upload-message`).innerHTML = `${files.length} files added`
 
     var output = document.getElementById(`${uploadElement}-preview`);
     output.innerHTML = ''
-    for (var i = 0; i < files.length; i++) {
-        var file = files[i];
+    Array.from(files).forEach(file => {
         if (!file.type.match('image'))
-            continue;
+            return;
         var picReader = new FileReader();
-        picReader.addEventListener("load", function (event) {
+        picReader.addEventListener("load", event => {
             var picFile = event.target;
             var div = document.createElement("span");
             div.innerHTML = `<img style='width: auto; max-height: ${dimension}px;' src= '${picFile.result}' title='${picFile.name}'/>`;
             output.insertBefore(div, null);
         });
         picReader.readAsDataURL(file);
-    }
+    })
 }
 
 const customUpload = (selector, uploadElement, dimension) => {
@@ -28,7 +27,7 @@ const customUpload = (selector, uploadElement, dimension) => {
         uploadButton.addEventListener('click', () => {
             filesInput.click();
         })
-        filesInput.addEventListener('change', function (event) {
+        filesInput.addEventListener('change', event => {
             displayImagePreview(event, uploadElement, dimension)
         })
     }

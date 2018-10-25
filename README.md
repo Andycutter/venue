@@ -46,7 +46,7 @@ for unit tests
 ## Deployment
 Deployment has been implemented using Heroku:
 
-[Venue](https://venue-show.herokuapp.com/ "Deployed with Heroku")
+[Venue](https://www.venue.show "Deployed with Heroku")
 
 ## Contributing
 Feel free to fork and submit pull requests
@@ -65,3 +65,10 @@ And a big thank you to all the coaches at [CraftAcedemy](https://craftacademy.se
 [Faraz](https://github.com/faraznaeem), 
 [Oliver](https://github.com/oliverochman) and 
 [Sophie](https://github.com/SophieSjoberg)
+
+
+## Notes
+
+Display cc icon on input: https://jsfiddle.net/ywain/L96q8uj5/
+
+

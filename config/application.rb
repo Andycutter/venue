@@ -29,8 +29,14 @@ module Venue
       generate.controller_specs false
       generate.system_tests false
     end
-    config.stripe.secret_key = Rails.application.credentials.stripe[:secret_key]
-    config.stripe.publishable_key = Rails.application.credentials.stripe[:publishable_key]
+    if Rails.env.production?
+      config.stripe.secret_key = Rails.application.credentials.stripe_production[:secret_key]
+      config.stripe.publishable_key = Rails.application.credentials.stripe_production[:publishable_key]
+    else
+      config.stripe.secret_key = Rails.application.credentials.stripe_development[:secret_key]
+      config.stripe.publishable_key = Rails.application.credentials.stripe_development[:publishable_key]
+    end
+
     config.stripe.endpoint = '/payment/stripe-integration'
   end
 end

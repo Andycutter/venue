@@ -9,7 +9,6 @@ gem 'puma', '~> 3.11'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'turbolinks', '~> 5'
-gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem "haml-rails", "~> 1.0"
 gem 'devise'
@@ -46,6 +45,8 @@ group :development, :test do
   gem 'uuidtools'
   gem 'email_spec'
   gem 'pdf-inspector', require: 'pdf/inspector'
+  gem 'timecop'
+  gem 'letter_opener'
 
 end
 

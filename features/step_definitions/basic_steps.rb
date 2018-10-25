@@ -54,25 +54,56 @@ end
 
 And('I fill in the stripe form') do
   sleep 1
-  stripe_iframe = find("iframe[name='__privateStripeFrame4']")
-  within_frame stripe_iframe do
+  find_field('example2-name').send_keys('Thomas')
+  find_field('example2-address').send_keys('Some street 1')
+  find_field('example2-city').send_keys('Ghotenburg')
+  find_field('example2-zip').send_keys('123 43')
+  stripe_iframe_4 = find("iframe[name='__privateStripeFrame4']", visible: false)
+  stripe_iframe_5 = find("iframe[name='__privateStripeFrame5']", visible: false)
+  stripe_iframe_6 = find("iframe[name='__privateStripeFrame6']", visible: false)
+
+  within_frame stripe_iframe_4 do
     card_field = find_field('cardnumber')
-    4.times { sleep 0.2; card_field.send_keys('4242'); sleep 0.2; }
-    find_field('exp-date').send_keys('1221')
+    4.times { sleep 0.3; card_field.send_keys(right: '4242'); sleep 0.2; }
+  end
+  within_frame stripe_iframe_5 do
+    find_field('exp-date').send_keys('12')
+    find_field('exp-date').send_keys('21')
+  end
+  within_frame stripe_iframe_6 do
     find_field('cvc').send_keys('999')
+  end
+end
+
+Given('(I )select {string} as performer genre') do |option|
+  genre = Genre.find_by(name: option.downcase)
+  @select_performer_genre ||= page.find('.choices[aria-activedescendant="choices-performer_genre_ids-item-choice-1"]')
+  @select_performer_genre.click
+  within @select_performer_genre do
+    page.find("[data-value='#{genre.id}']").click
   end
 end
 
 Given('(I )select {string} as genre') do |option|
   genre = Genre.find_by(name: option.downcase)
-  select = page.find('.choices').click
-  page.find("div[data-value='#{genre.id}']").click
+  @select_genre ||= page.find('.choices[aria-activedescendant="choices-campaign_genre_ids-item-choice-1"]')
+  @select_genre.click
+  within @select_genre do
+    page.find("#choices-campaign_genre_ids-item-choice-#{genre.id}").click
+  end
 end
 
-Given("I select {string} in {string}") do |option, select_tag|
+Given('I select {string} as performer') do |option|
+  find_all('.choices__button')&.each { |s| s.click }
+  performer = Performer.find_by(name: option)
+  page.find('.choices[aria-activedescendant="choices-campaign_performer_ids-item-choice-1"]').click
+  page.find("[data-value='#{performer.id}']").click
+end
+
+Given('I select {string} in {string}') do |option, select_tag|
   begin
     select option, from: select_tag
-  rescue
+  rescue StandardError
     select option, from: select_tag.downcase
   end
 end
@@ -107,25 +138,25 @@ When('I click on {string} for {string} 3 times') do |element_text, ticket_name|
   end
 end
 
-When("I set the date to {string}") do |date|
+When('I set the date to {string}') do |date|
   date_arr = date.split('-')
   page.find('#campaign_event_date').send_keys(date_arr[0], :tab, [date_arr[1], date_arr[2]].join(''))
 end
 
-Then("I click the {string} button for the {string} campaign") do |element_text, campaign_title|
+Then('I click the {string} button for the {string} campaign') do |element_text, campaign_title|
   campaign = Campaign.find_by_title(campaign_title)
-  within("#campaign_#{campaign.id}") do 
+  within("#campaign_#{campaign.id}") do
     click_on element_text
   end
 end
 
-Given("I click on {string} on the {string} slider") do |element_text, slider_title|
+Given('I click on {string} on the {string} slider') do |element_text, slider_title|
   slider = Slider.find_by_title(slider_title)
-  within("#slider_#{slider.id}") do 
+  within("#slider_#{slider.id}") do
     click_on element_text
   end
 end
 
-Given("I confirm the popup") do
+Given('I confirm the popup') do
   page.accept_alert
 end
